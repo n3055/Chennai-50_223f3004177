@@ -6,7 +6,7 @@ import numpy as np
 from datetime import datetime
 df = pd.read_csv("users.csv")
 df["leader_strength"] = df["followers"]/(df["following"]+1)
-st.header(":Chennai:blue[50] :bar_chart:")
+st.header("Chennai:blue[50] :bar_chart:")
 st.divider()
 st.header("Users Analysis :computer:")
 st.dataframe(df)
