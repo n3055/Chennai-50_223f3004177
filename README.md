@@ -1,5 +1,6 @@
 # Chennai-50_223f3004177
 Data Analysis of Github users from chennai with over 50 followers
+Check this out for overview of the analysis performed : https://chennai-50-223f300417.streamlit.app/
 # Scraping the data
 "The first step is to filter people from Chennai who have over 50 followers. To do this, I used GitHub's advanced search tool, where I set the parameters and found 419 such users. This also gave me a URL with the required query (i.e., location: Chennai and followers > 50). I appended that query to api.github.com/search to create the URL for our API requests. I used the requests module in Python to make an API request to the URL. Initially, I could only make a limited number of requests, so I included a header with an API key to allow my program to make more requests per minute. I then stored only the required fields in a dictionary, and using pandas, I created a DataFrame, which was saved as a CSV file using to_csv().
 
