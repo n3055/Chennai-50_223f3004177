@@ -6,7 +6,7 @@ import numpy as np
 from datetime import datetime
 df = pd.read_csv("users.csv")
 df["leader_strength"] = df["followers"]/(df["following"]+1)
-st.header(":orange[Git]:blue[IT] :bar_chart:")
+st.header(":Chennai:blue[50] :bar_chart:")
 st.divider()
 st.header("Users Analysis :computer:")
 st.dataframe(df)
@@ -176,3 +176,5 @@ st.subheader("Top 5 users who created most repositories on weekend:trophy:")
 wr = {k: v for k, v in sorted(weekend_repos.items(), key=lambda item: item[1], reverse=True)}
 wr = dict(list(wr.items())[0: 5])
 st.dataframe(wr)
+footer = """<style>.footer {position: fixed;left: 0;bottom: 0;width: 100%;background-color: #000;color: #5f6061;text-align: center;}</style><div class='footer'><p>Made with ❤️ by RISHI ANAND</p></div>"""
+st.markdown(footer, unsafe_allow_html=True)
