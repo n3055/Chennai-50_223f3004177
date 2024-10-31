@@ -6,7 +6,7 @@ import numpy as np
 from datetime import datetime
 df = pd.read_csv("users.csv")
 df["leader_strength"] = df["followers"]/(df["following"]+1)
-st.header("Chennai:blue[50] :bar_chart:")
+st.header(":orange[Git]:blue[IT] :bar_chart:")
 st.divider()
 st.header("Users Analysis :computer:")
 st.dataframe(df)
@@ -57,19 +57,16 @@ for i in range(419):
         if str(df.loc[i,"email"])!="nan":
             email_hireable+=1
     bio = str(df.loc[i,"bio"])
-    if bio=="nan":
-        continue
-    bio_list = bio.strip().split()
-    bio_length.append(len(bio_list))
-    followers.append(int(df.loc[i,"followers"]))
-cmpy["ZOHO CORPORATION"]+=cmpy["ZOHO"]
-del cmpy["ZOHO"]
+    if bio!="nan":
+        bio_list = bio.strip().split()
+        bio_length.append(len(bio_list))
+        followers.append(int(df.loc[i,"followers"]))
 cmpy_filter = {}
 for k in cmpy.keys():
     if cmpy[k]!=1:
         cmpy_filter[k]=cmpy[k]
 st.bar_chart(cmpy_filter,color="#ffaa00")
-st.write("\"Majority of Developers work at :red[ZOHO CORPORATION]\"")
+st.write("\"Majority of Developers work at :red[IIT MADRAS]\"")
 st.subheader("Most Common surname :pencil:")
 surname_filter = {}
 for n1 in surname.keys():
@@ -98,7 +95,7 @@ y_pred = reg.predict(x)
 ax.plot(x,y_pred,color='r')
 st.pyplot(fig)
 st.write(":red[Regression Slope]")
-st.latex(reg.coef_[0])
+st.write(reg.coef_[0])
 st.write("\"There is a negative correlation between :red[length of the bio] and :blue[followers]\"")
 st.write("But This doesn't mean wrting lengthy bio will repel followers XD.One possibility could be people with less followers write lengthy bio to attract new followers.")
 st.write(":red[Conclusion]: Writing lengthy bio doesn't help with followers")
@@ -123,6 +120,7 @@ st.header("Repositories Analysis :male-technologist:")
 st.dataframe(repo)
 st.subheader("Most popular license used :scroll:")
 lic = {}
+cusr = ""
 lang = {}
 lang_star = {}
 lang_2020 = {}
@@ -137,10 +135,14 @@ for i in range(26326):
     repo.loc[i,"has_wiki"]=int(repo.loc[i,"has_wiki"])
     repo.loc[i,"has_projects"]=int(repo.loc[i,"has_projects"])
     if str(repo.loc[i,"license_name"])!="nan":
+        if cusr=="":
+            cusr = repo.loc[i,"login"]
         if repo.loc[i,"license_name"] not in lic.keys():
             lic[repo.loc[i,"license_name"]]=1
         else:
-            lic[repo.loc[i,"license_name"]]+=1
+            if repo.loc[i,"login"]!=cusr:
+                lic[repo.loc[i,"license_name"]]+=1
+                cusr = repo.loc[i,"login"]
     if str(repo.loc[i,"language"])!="nan":
         if repo.loc[i,"language"] not in lang.keys():
             lang[repo.loc[i,"language"]]=1
@@ -161,7 +163,7 @@ st.bar_chart(lang)
 st.write(":blue[JavaScript] is the most popular language among these users")
 st.subheader("Languages popular among users who joined after :two::zero::two::zero:")
 st.bar_chart(lang_2020,color="#ffaa00")
-st.write(":blue[JavaScript] is still the most popular language followed by :red[HTML]")
+st.write(":blue[JavaScript] is still the most popular language followed by :red[Python]")
 
 st.subheader("Languages with highest average number of stars per repository	:star2:")
 for s in lang_star.keys():
